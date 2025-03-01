@@ -1,0 +1,30 @@
+﻿@model Blog
+
+@{
+    ViewData["Title"] = "Create New Post";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h1 class="mb-4 text-light">Create New Blog Post</h1>
+
+        <form asp-action="Create" method="post">
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Content" class="form-label"></label>
+                <textarea asp-for="Content" class="form-control" rows="10"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3 flex-row h-100 justify-content-between d-flex">
+                <a asp-action="Index" class="btn btn-outline-light">Cancel</a>
+                <button type="submit" class="btn btn-outline-light">Create Post</button>
+            </div>
+        </form>
+    </div>
+</div>

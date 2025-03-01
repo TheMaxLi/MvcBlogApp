@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Welcome to Blog Platform";
+}
+
+<style>
+    .hero-section {
+        padding: 120px 0;
+        background-color: #1e1e1e;
+        border-radius: 15px;
+        margin-bottom: 80px;
+    }
+
+    .feature-card {
+        background-color: #1e1e1e;
+        border: 1px solid #333;
+        transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+     }
+
+    .cta-section {
+        background-color: #1e1e1e;
+        border-radius: 15px;
+        padding: 80px 0;
+        margin: 80px 0;
+    }
+
+
+    .avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #333;
+    }
+</style>
+
+<section class="hero-section text-center">
+    <div class="container">
+        <h1 class="display-4 text-light mb-4">Share Your Story with the World</h1>
+        <p class="lead text-light mb-5">A modern blogging platform for creators, thinkers, and storytellers</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a asp-controller="Blog" asp-action="Index" class="btn btn-outline-light btn-lg">Start Reading</a>
+            <a asp-controller="Blog" asp-action="Create" class="btn btn-outline-light btn-lg">Start Writing</a>
+        </div>
+    </div>
+</section>
+
+<section class="container mb-5">
+    <h2 class="text-center text-light mb-5">Why Choose Our Platform</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="feature-card h-100 p-4 rounded">
+                <h3 class="h5 text-light mb-3">Easy to Use</h3>
+                <p class="text-muted mb-0">Intuitive interface that lets you focus on what matters most - your content.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-card h-100 p-4 rounded">
+                <h3 class="h5 text-light mb-3">Share your story</h3>
+                <p class="text-muted mb-0">Share across the web allowing everyone to hear your story.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-card h-100 p-4 rounded">
+                <h3 class="h5 text-light mb-3">SEO Optimized</h3>
+                <p class="text-muted mb-0">Get discovered by readers with our SEO-friendly platform.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="cta-section text-center">
+    <div class="container">
+        <h2 class="text-light mb-4">Ready to Start Your Writing Journey?</h2>
+        <p class="text-muted mb-5">Join thousands of writers who have already found their home here.</p>
+        <a asp-controller="Blog" asp-action="Create" class="btn btn-outline-light btn-lg">Create Your First Post</a>
+    </div>
+</section>

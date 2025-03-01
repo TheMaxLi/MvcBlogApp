@@ -1,0 +1,35 @@
+﻿@model BlogListViewModel
+
+@{
+    ViewData["Title"] = "Blog Posts";
+}
+
+<div class="row mb-4">
+    <div class="col">
+        <h1 class="text-light">@ViewData["PageTitle"]</h1>
+        <p class="text-muted">Total Posts: @ViewBag.TotalPosts</p>
+    </div>
+</div>
+
+<div class="row">
+    @foreach (var blog in Model.Blogs)
+    {
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h2 class="card-title h4 text-light">@blog.Title</h2>
+                        <p class="card-text text-light">@blog.Id </p>
+                    </div>
+                    <p class="card-subtitle mb-2 text-muted">
+                        By @blog.AuthorUsername on @blog.PublishedDate.ToShortDateString()
+                    </p>
+                    <p class="card-text">
+                        @blog.Content.Substring(0, Math.Min(200, blog.Content.Length))...
+                    </p>
+                    <a asp-action="Details" asp-route-id="@blog.Id" class="btn btn-outline-light">Read More</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

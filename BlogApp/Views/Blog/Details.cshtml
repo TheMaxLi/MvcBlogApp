@@ -1,0 +1,27 @@
+﻿@model Blog
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<article class="card">
+    <div class="card-body">
+        <h1 class="card-title text-light">@Model.Title</h1>
+        <div class="text-muted mb-4">
+            <p class="mb-1">By @Model.AuthorUsername</p>
+            <p>Published on @Model.PublishedDate.ToLongDateString()</p>
+        </div>
+        <div class="card-text mb-4">
+            @Model.Content
+        </div>
+        <div class="tags">
+            @foreach (var tag in Model.Tags)
+            {
+                <span class="badge border-1 border-light border me-2">@tag</span>
+            }
+        </div>
+    </div>
+</article>
+<div class="mt-4">
+    <a asp-action="Index" class="btn btn-outline-light">Back to List</a>
+</div>
