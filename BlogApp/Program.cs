@@ -1,5 +1,4 @@
 using BlogApp.Repository;
-using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 using ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole());
@@ -7,8 +6,8 @@ ILogger logger = factory.CreateLogger("Program");
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession(); 
-builder.Services.AddScoped<IBlogRepository, MockBlogRepository>();
-builder.Services.AddScoped<IAuthorRepository, MockAuthorRepository>();
+builder.Services.AddSingleton<IBlogRepository, MockBlogRepository>();
+builder.Services.AddSingleton<IAuthorRepository, MockAuthorRepository>();
 
 var app = builder.Build();
 
