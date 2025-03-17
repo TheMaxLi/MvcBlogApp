@@ -10,6 +10,8 @@ namespace BlogApp.Repository
         void UpdateBlog(Blog blog);
         void DeleteBlog(int id);
         List<Blog> GetBlogsByAuthorUsername(string username);
+        void AddComment(int id, Comment comment);
+        void IncrementLikeCount(int id);
 
     }
 }

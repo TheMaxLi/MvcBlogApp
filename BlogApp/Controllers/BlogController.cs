@@ -1,8 +1,8 @@
-﻿using BlogApp.Models.ViewModels;
-using BlogApp.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using BlogApp.Models;
+using BlogApp.Models.ViewModels;
 using BlogApp.Repository;
-using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace BlogApp.Controllers
 {
@@ -38,12 +38,12 @@ namespace BlogApp.Controllers
         {
             var blog = _blogRepository.GetBlogById(id);
             if (blog == null)
+            {
                 return NotFound();
-
+            }
             return View(blog);
         }
-
-        [HttpGet]
+      [HttpGet]
         public IActionResult Create()
         {
             var authorUsername = HttpContext.Session.GetString("AuthorUsername");
@@ -55,6 +55,26 @@ namespace BlogApp.Controllers
         }
 
         [HttpPost]
+        public IActionResult AddComment(int blogId, string commentText)
+        {
+            var comment = new Comment
+            {
+                Text = commentText,
+                AuthorUsername = User.Identity.Name,
+                PublishedDate = DateTime.Now,
+                BlogId = blogId
+            };
+            _blogRepository.AddComment(blogId, comment);
+            return RedirectToAction("Details", new { id = blogId });
+        }
+
+        [HttpPost]
+        public IActionResult Like(int blogId)
+        {
+            _blogRepository.IncrementLikeCount(blogId);
+            return RedirectToAction("Details", new { id = blogId });
+        }
+          [HttpPost]
         public IActionResult Create(Blog blog)
         {
             var authorUsername = HttpContext.Session.GetString("AuthorUsername");
@@ -74,5 +94,7 @@ namespace BlogApp.Controllers
 
             return View(blog);
         }
+    
     }
+    
 }

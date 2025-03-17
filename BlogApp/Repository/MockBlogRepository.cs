@@ -48,5 +48,17 @@ namespace BlogApp.Repository
         {
             return _blogs.FindAll((b) => b.AuthorUsername == username);
         }
+        public void IncrementLikeCount(int blogId)
+        {
+            var blog = _blogs.FirstOrDefault(b => b.Id == blogId);
+            if (blog != null)
+                blog.LikeCount++;
+        }
+        public void AddComment(int blogId, Comment comment)
+        {
+            var blog = _blogs.FirstOrDefault(b => b.Id == blogId);
+            if (blog != null)
+                blog.Comments.Add(comment);
+        }
     }
 }
